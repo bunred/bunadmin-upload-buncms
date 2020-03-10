@@ -10,7 +10,7 @@ export default async function addSer(newData: Type) {
   const gql = `
     mutation MyMutation {
       __typename
-      insert_${SchemaName}(objects: {type: "${newData.type}", module: "${newData.module}", field: "${newData.field}", file_name: "${newData.file_name}", file_size: "${newData.file_size}", sn: "${newData.sn}", media_name: "${newData.media_name}", display_name: "${newData.display_name}"}) {
+      insert_${SchemaName}(objects: {type: "${newData.type}", file_name: "${newData.file_name}", file_size: "${newData.file_size}", sn: "${newData.sn}", media_name: "${newData.media_name}", display_name: "${newData.display_name}"}) {
         affected_rows
       }
     }

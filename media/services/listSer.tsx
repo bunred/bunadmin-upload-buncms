@@ -20,8 +20,6 @@ export default async function listSer(query: Query<any>) {
         updated_at
         user_id
         type
-        module
-        field
         file_name
         file_size
         sn

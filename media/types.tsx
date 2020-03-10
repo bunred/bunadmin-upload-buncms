@@ -4,8 +4,6 @@ export default interface Type {
   updated_at: number
   user_id?: boolean
   type: string
-  module: string
-  field: string
   file_name: string
   file_size: number
   sn: number

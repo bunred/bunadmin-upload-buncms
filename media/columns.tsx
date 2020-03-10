@@ -1,12 +1,35 @@
 import { Column } from "material-table"
 import Type from "./types"
+import React from "react"
+import { Button, Tooltip } from "@material-ui/core"
+import BunadminFile from "@plugins/buncms-file/media/components/BunadminFile"
+import { ENV } from "@/utils/config"
 
 export default [
   { title: "Id", field: "id", editable: "never", width: 160 },
   { title: "Type", field: "type" },
-  { title: "Module", field: "module" },
-  { title: "Field", field: "field" },
-  { title: "File Name", field: "file_name" },
+  {
+    title: "Preview",
+    field: "file_name",
+    width: 160,
+    render: rowData => (
+      <BunadminFile
+        width={135}
+        viewMode={true}
+        prefix={ENV.SITE_URLS[2]}
+        file={rowData}
+      />
+    )
+  },
+  {
+    title: "File Name",
+    field: "file_name",
+    render: r => (
+      <Tooltip title={r.file_name} placement="top" arrow>
+        <Button>Show</Button>
+      </Tooltip>
+    )
+  },
   { title: "File Size", field: "file_size" },
   { title: "Rank", field: "sn" },
   { title: "Media Name", field: "media_name" },
