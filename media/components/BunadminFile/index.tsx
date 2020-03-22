@@ -1,4 +1,11 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
+import React, {
+  AriaAttributes,
+  Dispatch,
+  HTMLAttributes,
+  SetStateAction,
+  useEffect,
+  useState
+} from "react"
 import {
   Button,
   Card,
@@ -22,6 +29,10 @@ export interface OnDropProps {
 }
 
 interface Props {
+  className?: string
+  ariaAttributes?: AriaAttributes
+  htmlAttributes?: HTMLAttributes<any>
+
   file: any
   title?: string
   width?: number
@@ -40,6 +51,9 @@ interface Props {
 
 export default function BunadminFile(props: Props) {
   const {
+      className,
+      ariaAttributes,
+      htmlAttributes,
       file,
       title,
       width,
@@ -80,11 +94,11 @@ export default function BunadminFile(props: Props) {
   }
 
   const CardBottomArea = () => (
-    <CardActions>
+    <CardActions className={classes.BottomArea}>
       <CardContent className={classes.BottomButtons}>
         {!id ? (
-          <Button disabled={viewMode} color="primary">
-            {viewMode ? "No picture" : "Upload"}
+          <Button disabled color="primary" size="small">
+            No picture
           </Button>
         ) : (
           <>
@@ -114,7 +128,11 @@ export default function BunadminFile(props: Props) {
   }, [media_name])
 
   return (
-    <div className={classes.root}>
+    <div
+      {...ariaAttributes}
+      {...htmlAttributes}
+      className={`${className} ${classes.root}`}
+    >
       <FilePreview
         preview={preview}
         setPreview={setPreview}
@@ -141,7 +159,7 @@ export default function BunadminFile(props: Props) {
           }) => {
             if (!uploading) {
               return (
-                <CardActionArea>
+                <CardActionArea disabled={viewMode}>
                   {!viewMode && (
                     <div {...getRootProps()} className={classes.DropZone}>
                       <div className={classes.UploadText}>
@@ -152,11 +170,11 @@ export default function BunadminFile(props: Props) {
                     </div>
                   )}
                   <CardMedia
-                    style={mediaStyle}
+                    style={{ ...mediaStyle, width, height: width || undefined }}
                     component="img"
                     image={imageUrl}
                   />
-                  {!id && <CardBottomArea />}
+                  {!id && viewMode && <CardBottomArea />}
                 </CardActionArea>
               )
             } else {

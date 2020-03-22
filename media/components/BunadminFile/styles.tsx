@@ -11,7 +11,11 @@ export default function styles({ id, width }: Props) {
       root: {
         width: width || 150
       },
-      Card: { margin: id ? "20px 0" : "20px 5px 20px 0", borderWidth: 1 },
+      Card: {
+        margin: id ? "20px 0" : "20px 5px 20px 0",
+        borderWidth: 1,
+        position: "relative"
+      },
       DropZone: {
         width: "100%",
         height: "100%",
@@ -19,8 +23,15 @@ export default function styles({ id, width }: Props) {
         zIndex: 100,
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
-        paddingBottom: id ? 0 : theme.spacing(6)
+        justifyContent: "center"
+      },
+      BottomArea: {
+        height: 35,
+        position: "absolute",
+        zIndex: 100,
+        width: "100%",
+        bottom: 0,
+        background: "#ffffff8a"
       },
       BottomButtons: {
         display: "flex",
