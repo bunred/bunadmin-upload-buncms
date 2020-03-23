@@ -13,6 +13,7 @@ import {
 import CloseIcon from "@material-ui/icons/Close"
 import ZoomInIcon from "@material-ui/icons/ZoomIn"
 import ZoomOutIcon from "@material-ui/icons/ZoomOut"
+import { useStyles } from "./styles"
 
 interface Props {
   preview: boolean
@@ -20,7 +21,10 @@ interface Props {
   title?: string
   fullScreen?: boolean
   url: string
-  file: any
+  file?: {
+    created_at?: string
+    media_name?: string
+  }
 }
 
 export default function FilePreview({
@@ -31,6 +35,10 @@ export default function FilePreview({
   url,
   file
 }: Props) {
+  if (!file) return null
+
+  const classes = useStyles()
+  const { created_at, media_name } = file
   const [state, setState] = useState({ fullScreen: fullScreen })
 
   function handleFullWidthChange() {
@@ -55,28 +63,26 @@ export default function FilePreview({
             id="responsive-dialog-title"
           >
             {title}
-            {file.created_at || "File not uploaded"}
+            {created_at || "File not uploaded"}
           </DialogTitle>
         )}
-        <div>
-          <Card style={{ borderRadius: 0 }} onClick={handleClose}>
-            <CardActionArea>
-              <CardActions style={{ padding: 0, justifyContent: "center" }}>
-                <CardMedia
-                  style={{ width: "max-content" }}
-                  component="img"
-                  image={url}
-                  alt={title}
-                  title={title}
-                  onClick={handleClose}
-                />
-              </CardActions>
-            </CardActionArea>
-          </Card>
-        </div>
-        <DialogActions>
+        <Card className={classes.cardRoot} onClick={handleClose}>
+          <CardActionArea className={classes.cardActionArea}>
+            <CardActions className={classes.cardActions}>
+              <CardMedia
+                style={{ width: "max-content" }}
+                component="img"
+                image={url}
+                alt={title}
+                title={title}
+                onClick={handleClose}
+              />
+            </CardActions>
+          </CardActionArea>
+        </Card>
+        <DialogActions className={classes.dialogActions}>
           <Button onClick={handleClose} color="primary">
-            {file.media_name || file.created_at}
+            {media_name || created_at}
           </Button>
 
           <IconButton aria-label="Preview" onClick={handleFullWidthChange}>
