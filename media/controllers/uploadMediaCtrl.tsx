@@ -25,7 +25,7 @@ export default async function uploadMediaCtrl({
 
   if (res.file_name) {
     setImageUrl && setImageUrl(`${prefix}/${res.file_name}`)
-    await notice({ title: "Uploaded successfully" })
+    // await notice({ title: "Uploaded successfully" })
 
     // Insert to media
     if (!editProps) return
