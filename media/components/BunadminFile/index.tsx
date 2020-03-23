@@ -1,59 +1,33 @@
-import React, {
-  AriaAttributes,
-  Dispatch,
-  HTMLAttributes,
-  SetStateAction,
-  useEffect,
-  useState
-} from "react"
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
 import {
-  Button,
   Card,
   CardActionArea,
-  CardActions,
-  CardContent,
   CardMedia,
-  CircularProgress,
-  IconButton
+  CircularProgress
 } from "@material-ui/core"
-import DeleteIcon from "@material-ui/icons/Delete"
-import ViewIcon from "@material-ui/icons/OpenInNew"
 import DropZone from "react-dropzone"
 import FilePreview from "../FilePreview"
 import styles from "./styles"
+import Props from "./types"
+import CardBottomArea from "./CardBottomArea"
+import { Translation } from "react-i18next"
 
 export interface OnDropProps {
   files: any[]
   prefix?: string
-  setImageUrl: Dispatch<SetStateAction<string>>
-}
-
-interface Props {
-  className?: string
-  ariaAttributes?: AriaAttributes
-  htmlAttributes?: HTMLAttributes<any>
-
-  file: any
-  title?: string
-  width?: number
-  prefix?: string
-
-  onDrop?: ({ files, prefix, setImageUrl }: OnDropProps) => Promise<void>
-  onDel?: ({ file }: { file: any }) => Promise<void>
-
-  cardStyle?: object
-  mediaStyle?: object
-
-  viewMode?: boolean
-  multipleUpload?: boolean
-  hideUploadTip?: boolean
+  setImageUrl?: Dispatch<SetStateAction<string>>
 }
 
 export default function BunadminFile(props: Props) {
   const {
+      fileKey,
       className,
       ariaAttributes,
       htmlAttributes,
+
+      uploadText,
+      replaceText,
+
       file,
       title,
       width,
@@ -66,13 +40,21 @@ export default function BunadminFile(props: Props) {
       multipleUpload,
       hideUploadTip
     } = props,
-    { id, file_name, media_name } = file,
     default_image = "/p/default.jpg"
+
+  let id: string | undefined,
+    file_name: string | undefined,
+    media_name: string | undefined
+  if (file) {
+    id = file.id
+    file_name = file.file_name
+    media_name = file.media_name
+  }
 
   const classes = styles({ id, width })
   const [uploading, setUploading] = React.useState(false),
     [imageUrl, setImageUrl] = React.useState(
-      id ? `${prefix}/${file_name}` : default_image
+      id && file_name ? `${prefix}/${file_name}` : default_image
     ),
     [preview, setPreview] = useState(false)
 
@@ -93,44 +75,34 @@ export default function BunadminFile(props: Props) {
     setUploading(false)
   }
 
-  const CardBottomArea = () => (
-    <CardActions className={classes.BottomArea}>
-      <CardContent className={classes.BottomButtons}>
-        {!id ? (
-          <Button disabled color="primary" size="small">
-            No picture
-          </Button>
-        ) : (
-          <>
-            <IconButton
-              disabled={uploading}
-              color="primary"
-              onClick={id ? () => setPreview(true) : () => null}
-              aria-label={id ? "View" : "Upload"}
-            >
-              <ViewIcon className={classes.BottomIcon} />
-            </IconButton>
-            <IconButton
-              color="primary"
-              aria-label="Delete"
-              onClick={() => handleDelMedia()}
-            >
-              <DeleteIcon className={classes.BottomIcon} />
-            </IconButton>
-          </>
-        )}
-      </CardContent>
-    </CardActions>
+  const BottomComp = () => (
+    <CardBottomArea
+      id={id}
+      uploading={uploading}
+      setPreview={setPreview}
+      classes={classes}
+      handleDelMedia={handleDelMedia}
+    />
   )
 
   useEffect(() => {
-    multipleUpload && console.log(multipleUpload)
+    multipleUpload &&
+      console.log(multipleUpload, "Multiple Upload not supported yet")
   }, [media_name])
+
+  const UploadText = () => (
+    <Translation ns="table">{t => t("Choose or drag")}</Translation>
+  )
+
+  const ReplaceText = () => (
+    <Translation ns="table">{t => t("Choose or drag to replace")}</Translation>
+  )
 
   return (
     <div
       {...ariaAttributes}
       {...htmlAttributes}
+      key={fileKey}
       className={`${className} ${classes.root}`}
     >
       <FilePreview
@@ -159,12 +131,14 @@ export default function BunadminFile(props: Props) {
           }) => {
             if (!uploading) {
               return (
-                <CardActionArea disabled={viewMode}>
+                <CardActionArea disabled={viewMode && !id}>
                   {!viewMode && (
                     <div {...getRootProps()} className={classes.DropZone}>
                       <div className={classes.UploadText}>
                         {!hideUploadTip &&
-                          (!id ? "upload_or_drag" : "upload_or_drag_replace")}
+                          (!id
+                            ? uploadText || <UploadText />
+                            : replaceText || <ReplaceText />)}
                       </div>
                       <input {...getInputProps()} />
                     </div>
@@ -174,7 +148,7 @@ export default function BunadminFile(props: Props) {
                     component="img"
                     image={imageUrl}
                   />
-                  {!id && viewMode && <CardBottomArea />}
+                  {!id && viewMode && <BottomComp />}
                 </CardActionArea>
               )
             } else {
@@ -183,6 +157,8 @@ export default function BunadminFile(props: Props) {
                   className={classes.DropZone}
                   style={{
                     ...mediaStyle,
+                    width,
+                    height: width || undefined,
                     position: "relative"
                   }}
                 >
@@ -193,7 +169,7 @@ export default function BunadminFile(props: Props) {
           }}
         </DropZone>
 
-        {!viewMode && (id || uploading) && <CardBottomArea />}
+        {!viewMode && (id || uploading) && <BottomComp />}
       </Card>
     </div>
   )

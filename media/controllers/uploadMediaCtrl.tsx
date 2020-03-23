@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react"
 import { notice } from "@/core"
 import { OnDropProps } from "buncms-file/media/components/BunadminFile"
 import uploadFileSer from "../services/uploadFileSer"
@@ -5,6 +6,7 @@ import { EditComponentProps } from "material-table"
 
 interface Props extends OnDropProps {
   editProps?: EditComponentProps<any>
+  setImageUrl?: Dispatch<SetStateAction<string>>
 }
 
 export default async function uploadMediaCtrl({
@@ -22,7 +24,7 @@ export default async function uploadMediaCtrl({
   const res = await uploadFileSer(formMedia)
 
   if (res.file_name) {
-    setImageUrl(`${prefix}/${res.file_name}`)
+    setImageUrl && setImageUrl(`${prefix}/${res.file_name}`)
     await notice({ title: "Uploaded successfully" })
 
     // Insert to media

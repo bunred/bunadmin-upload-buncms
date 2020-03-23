@@ -13,5 +13,10 @@ export const table = {
   "File Size": "文件大小",
   Rank: "排序",
   "Media Name": "媒体原名",
-  "Display Name": "显示名称"
+  "Display Name": "显示名称",
+  "Choose or drag": "选择 / 拖放",
+  "Choose or drag to replace": "选择 / 拖放替换",
+  "No picture": "暂无图片",
+  "Are you sure to delete the file": "确定要删除该文件吗 ?",
+  "All reference will be deleted": "该文件的所有关联引用将被移除"
 }

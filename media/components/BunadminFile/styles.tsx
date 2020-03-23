@@ -1,7 +1,7 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core"
 
 interface Props {
-  id: string
+  id?: string
   width?: number
 }
 
@@ -9,7 +9,7 @@ export default function styles({ id, width }: Props) {
   const useStyles = makeStyles((theme: Theme) => {
     return createStyles({
       root: {
-        width: width || 150
+        width: width || theme.spacing(18.75) // 150
       },
       Card: {
         margin: id ? "20px 0" : "20px 5px 20px 0",
@@ -26,7 +26,7 @@ export default function styles({ id, width }: Props) {
         justifyContent: "center"
       },
       BottomArea: {
-        height: 35,
+        height: theme.spacing(4.5), // 36
         position: "absolute",
         zIndex: 100,
         width: "100%",
@@ -40,15 +40,21 @@ export default function styles({ id, width }: Props) {
         padding: 0,
         paddingBottom: "0!important"
       },
-      BottomIcon: { color: theme.bunadmin.iconColor, width: 21, height: 21 },
+      BottomIcon: {
+        width: 21,
+        height: 21,
+        color: theme.palette.primary.light
+      },
       UploadText: {
         color: "#FFF",
         fontSize: 12,
         opacity: 0.6,
         textShadow: "1px 1px 10px #fff",
+        maxWidth: theme.spacing(12.5),
         backgroundColor: "rgba(0, 0, 0, .5)",
         borderRadius: 5,
-        padding: "0 3px"
+        padding: theme.spacing(0.5, 1),
+        textAlign: "center"
       }
     })
   })
