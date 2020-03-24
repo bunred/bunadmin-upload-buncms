@@ -20,7 +20,7 @@ export default function styles({ id, width }: Props) {
         width: "100%",
         height: "100%",
         position: "absolute",
-        zIndex: 100,
+        zIndex: 1,
         display: "flex",
         alignItems: "center",
         justifyContent: "center"
@@ -28,7 +28,7 @@ export default function styles({ id, width }: Props) {
       BottomArea: {
         height: theme.spacing(4.5), // 36
         position: "absolute",
-        zIndex: 100,
+        zIndex: 2,
         width: "100%",
         bottom: 0,
         background: "#ffffff8a"
