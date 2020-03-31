@@ -16,7 +16,7 @@ export const table = {
   "Display Name": "Display Name",
   "Choose or drag": "Choose or drag",
   "Choose or drag to replace": "Choose or drag to replace",
-  "No picture": "No picture",
+  "No image": "No img",
   "Are you sure to delete the file": "Are you sure to delete the file ?",
   "All reference will be deleted": "All reference will be deleted"
 }

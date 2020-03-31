@@ -32,7 +32,7 @@ const CardBottomArea = ({
         <CardContent className={classes.BottomButtons}>
           {!id ? (
             <Button disabled color="primary" size="small">
-              <Translation ns="table">{t => t("No picture")}</Translation>
+              <Translation ns="table">{t => t("No image")}</Translation>
             </Button>
           ) : (
             <>
