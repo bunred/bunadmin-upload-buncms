@@ -13,15 +13,25 @@ interface Resp {
   errors?: string
 }
 
-export default async function uploadFileSer(data: any): Promise<Resp> {
+type Options = {
+  url?: string
+  prefix?: string
+  method?: string
+  headers?: any
+}
+
+export default async function uploadFileSer(
+  data: any,
+  options?: Options
+): Promise<Resp> {
   // Buncms File 上传图片
   const token = await storedToken()
 
   // `request` use `umi-request` directly
-  return await request("/file", {
-    prefix: ENV.SITE_URLS[1],
-    method: "post",
-    headers: {
+  return await request((options && options.url) || "/file", {
+    prefix: (options && options.prefix) || ENV.SITE_URLS[1],
+    method: (options && options.method) || "post",
+    headers: (options && options.headers) || {
       Authorization: `Bearer ${token}`
     },
     data: data

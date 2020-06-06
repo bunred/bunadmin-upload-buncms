@@ -7,13 +7,15 @@ import { EditComponentProps, rxMtUpdateField } from "material-table"
 interface Props extends OnDropProps {
   editProps?: EditComponentProps<any>
   setImageUrl?: Dispatch<SetStateAction<string>>
+  uploadPrefix?: string
 }
 
 export default async function uploadMediaCtrl({
   editProps,
   files,
   prefix,
-  setImageUrl
+  setImageUrl,
+  uploadPrefix
 }: Props) {
   const file = files[0]
   const formMedia = new FormData()
@@ -21,7 +23,7 @@ export default async function uploadMediaCtrl({
   formMedia.append("media", file)
 
   // Buncms File 上传图片
-  const res = await uploadFileSer(formMedia)
+  const res = await uploadFileSer(formMedia, { prefix: uploadPrefix })
 
   if (res.file_name) {
     setImageUrl && setImageUrl(`${prefix}/${res.file_name}`)
