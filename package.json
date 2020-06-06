@@ -1,6 +1,6 @@
 {
   "name": "buncms-file",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "license": "Apache-2.0",
   "dependencies": {
     "react-dropzone": "^10.2.1"
