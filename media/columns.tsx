@@ -2,8 +2,8 @@ import { Column } from "material-table"
 import Type from "./types"
 import React from "react"
 import { Button, Tooltip } from "@material-ui/core"
-import BunadminFile from "@plugins/buncms-file/media/components/BunadminFile"
-import { ENV } from "@/utils/config"
+import BunadminFile from "./components/BunadminFile"
+import { ENV } from "@bunred/bunadmin"
 
 export default ({ t }: any) =>
   [

@@ -1,6 +1,5 @@
-import storedToken from "@/utils/scripts/storedToken"
 import request from "umi-request"
-import { ENV } from "@/utils/config"
+import { ENV, storedToken } from "@bunred/bunadmin"
 
 interface Resp {
   id?: string // media id

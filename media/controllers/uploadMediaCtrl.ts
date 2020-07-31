@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react"
-import { notice } from "@/core"
-import { OnDropProps } from "buncms-file/media/components/BunadminFile"
+import { notice } from "@bunred/bunadmin"
+import { OnDropProps } from "../components/BunadminFile"
 import uploadFileSer from "../services/uploadFileSer"
 import { EditComponentProps, rxMtUpdateField } from "material-table"
 

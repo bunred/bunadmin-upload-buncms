@@ -1,16 +1,14 @@
-import request from "@/utils/scripts/request"
-import storedToken from "@/utils/scripts/storedToken"
-import { ENV } from "@/utils/config"
+import { request, storedToken, ENV } from "@bunred/bunadmin"
 import Type from "../types"
 import { SchemaName } from "../plugin"
 
-export default async function updateSer(newData: Type, oldData: Type) {
+export default async function addSer(newData: Type) {
   const token = await storedToken()
 
   const gql = `
     mutation MyMutation {
       __typename
-      update_${SchemaName}(where: {id: {_eq: "${oldData.id}"}}, _set: {name: "${newData.file_name}"}) {
+      insert_${SchemaName}(objects: {type: "${newData.type}", file_name: "${newData.file_name}", file_size: "${newData.file_size}", sn: "${newData.sn}", media_name: "${newData.media_name}", display_name: "${newData.display_name}"}) {
         affected_rows
       }
     }

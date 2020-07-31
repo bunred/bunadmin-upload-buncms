@@ -1,6 +1,4 @@
-import request from "@/utils/scripts/request"
-import storedToken from "@/utils/scripts/storedToken"
-import { ENV } from "@/utils/config"
+import { request, storedToken, ENV } from "@bunred/bunadmin"
 import Type from "../types"
 import { SchemaName } from "../plugin"
 

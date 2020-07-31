@@ -1,9 +1,9 @@
 import React, { useMemo } from "react"
-import { ENV } from "@/utils/config"
-import uploadMediaCtrl from "@plugins/buncms-file/media/controllers/uploadMediaCtrl"
+import { ENV } from "@bunred/bunadmin"
+import uploadMediaCtrl from "../controllers/uploadMediaCtrl"
 import { EditComponentProps } from "material-table"
-import BunadminFile from "@plugins/buncms-file/media/components/BunadminFile"
-import deleteSer from "@plugins/buncms-file/media/services/deleteSer"
+import BunadminFile from "./BunadminFile"
+import deleteSer from "../services/deleteSer"
 
 interface Props {
   width?: number

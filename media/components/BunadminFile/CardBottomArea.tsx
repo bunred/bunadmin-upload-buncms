@@ -3,7 +3,7 @@ import { Button, CardActions, CardContent, IconButton } from "@material-ui/core"
 import ViewIcon from "@material-ui/icons/OpenInNew"
 import DeleteIcon from "@material-ui/icons/Delete"
 import { Translation } from "react-i18next"
-import ConfirmDialog from "@/components/CommonDialog/ConfirmDialog"
+import { ConfirmDialog } from "@bunred/bunadmin"
 
 interface Props {
   classes: any
