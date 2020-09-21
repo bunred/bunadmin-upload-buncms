@@ -1,6 +1,6 @@
 {
-  "name": "bunadmin-plugin-file",
-  "version": "1.0.0-alpha.5",
+  "name": "bunadmin-upload-buncms",
+  "version": "1.0.1-alpha.1",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,11 +9,10 @@
   ],
   "scripts": {
     "dev": "npm explore @bunred/bunadmin -- next dev -p 1911",
-    "pack": "rm -rf dist && tsc && npm pack",
-    "cp2plugin": "yarn --froce && cp -R dist node_modules/@bunred/bunadmin/plugins/buncms-file"
+    "pack": "rm -rf dist & tsc && npm pack"
   },
   "dependencies": {
-    "@bunred/bunadmin": "^1.1.0-alpha.5",
+    "@bunred/bunadmin": "^1.1.0-beta.1.2",
     "react-dropzone": "^10.2.1"
   },
   "devDependencies": {

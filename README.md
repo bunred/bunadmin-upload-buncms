@@ -1,8 +1,8 @@
-# bunadmin-plugin-buncms-file
+# bunadmin-source-buncms
 
 ### how to use
 
-copy object from [bunadmin-plugins](https://github.com/bunred/bunadmin-plugins/blob/master/navigation/file-upload/bunred/bunadmin-plugin-buncms-file.json) into array (:bunadmin/plugins-info.json)
 ```
-node plugins-update.js
+cd bunadmin/plugins/
+git clone https://github.com/bunred/bunadmin-upload-buncms.git
 ```

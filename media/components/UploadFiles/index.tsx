@@ -1,25 +1,25 @@
-import React from "react";
-import { CommonDrawer } from "@bunred/bunadmin";
-import { useStyles } from "./styles";
-import { TFunction } from "i18next";
+import React from "react"
+import { CommonDrawer } from "@bunred/bunadmin"
+import { useStyles } from "./styles"
+import { TFunction } from "i18next"
 
-export const useFilesStyles = useStyles;
+export const useFilesStyles = useStyles
 
 interface Props {
-  t: TFunction;
-  viewMode?: boolean;
-  maximum?: number; // default 6
-  buttonTitlePreview?: string;
-  buttonTitleUpdate?: string;
-  listFiles?: () => void;
-  files: any[];
-  FilesList: () => JSX.Element[];
-  sortingFiles?: (filesElement: HTMLElement) => void;
-  UploadArea: () => JSX.Element;
+  t: TFunction
+  viewMode?: boolean
+  maximum?: number // default 6
+  buttonTitlePreview?: string
+  buttonTitleUpdate?: string
+  listFiles?: () => void
+  files: any[]
+  FilesList: () => JSX.Element[]
+  sortingFiles?: (filesElement: HTMLElement) => void
+  UploadArea: () => JSX.Element
 }
 
 export default function UploadFiles(props: Props) {
-  const classes = useStyles();
+  const classes = useStyles()
   const {
     t,
     viewMode,
@@ -31,25 +31,25 @@ export default function UploadFiles(props: Props) {
     FilesList,
     sortingFiles,
     UploadArea
-  } = props;
+  } = props
 
   async function handleOnOpen({
     contentRef
   }: {
-    contentRef: React.MutableRefObject<any | undefined>;
+    contentRef: React.MutableRefObject<any | undefined>
   }) {
     // reload files when drawer opened
     if (listFiles) {
-      await listFiles();
+      await listFiles()
     }
 
-    if (viewMode) return;
+    if (viewMode) return
 
-    const filesElement: HTMLElement = contentRef.current;
-    if (!filesElement) return;
+    const filesElement: HTMLElement = contentRef.current
+    if (!filesElement) return
 
     if (sortingFiles) {
-      sortingFiles(filesElement);
+      sortingFiles(filesElement)
     }
   }
 
@@ -75,5 +75,5 @@ export default function UploadFiles(props: Props) {
         {!viewMode && files.length + 1 <= maximum && <UploadArea />}
       </CommonDrawer>
     </div>
-  );
+  )
 }

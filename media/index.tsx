@@ -4,7 +4,7 @@ import {
   CommonTableHead,
   tableIcons,
   CommonTableDefaultProps as DefaultProps
-} from "@bunred/bunadmin";
+} from "@bunred/bunadmin"
 import { useTheme } from "@material-ui/core/styles"
 
 import { SchemaLabel, SchemaColumns } from "./plugin"

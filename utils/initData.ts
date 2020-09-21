@@ -1,50 +1,19 @@
-import { Schema, Menu } from "@bunred/bunadmin"
+import { IPluginData } from "@bunred/bunadmin"
 
-const BunadminSchema = Schema.name
-const BunadminMenu = Menu.name
-
-const created_at = Date.now()
-
-export default {
-  plugin: "buncms-file",
-  list: [
-    {
-      name: BunadminSchema,
-      data: [
-        {
-          group: "file",
-          name: "media",
-          label: "Files",
-          created_at,
-          team: "buncms",
-          columns: '[{"title":"Id","field":"id"}]',
-          customized: true,
-          id: "media_file"
-        }
-      ]
-    },
-    {
-      name: BunadminMenu,
-      data: [
-        {
-          rank: "0",
-          label: "File",
-          slug: "",
-          parent: "",
-          name: "file",
-          icon_type: "eva",
-          icon: "archive-outline",
-          id: "buncms_media"
-        },
-        {
-          rank: "0",
-          label: "Media",
-          slug: "/file/media",
-          parent: "file",
-          name: "media_file",
-          id: "buncms_media_file"
-        }
-      ]
-    }
-  ]
+const plugin = "buncms-upload"
+const commonProps = {
+  team: "buncms",
+  group: "upload-buncms",
+  customized: true,
+  icon_type: "eva"
 }
+const data: IPluginData[] = [
+  {
+    ...commonProps,
+    id: "buncms_upload_media",
+    name: "media",
+    label: "Files",
+    icon: "cloud-upload-outline"
+  }
+]
+export default { plugin, data }
