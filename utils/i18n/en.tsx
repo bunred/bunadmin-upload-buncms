@@ -1,7 +1,6 @@
 // i18n namespace: plugins
 export const plugins = {
-  File: "File",
-  Media: "Media"
+  Files: "Files"
 }
 
 // i18n namespace: table

@@ -29,11 +29,7 @@ export default function media() {
         options={{
           ...DefaultProps.options,
           selection: false,
-          filtering: true,
-          fixedColumns: {
-            left: 3,
-            right: 1
-          }
+          filtering: true
         }}
         // data
         data={async query => await dataCtrl(query)}

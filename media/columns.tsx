@@ -12,10 +12,9 @@ export default ({ t }: any) =>
     {
       title: t("Preview"),
       field: "file_name",
-      width: 180,
       render: rowData => (
         <BunadminFile
-          width={135}
+          width={100}
           viewMode={true}
           prefix={ENV.SITE_URLS[2]}
           file={rowData}
