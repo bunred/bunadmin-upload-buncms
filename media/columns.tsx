@@ -42,6 +42,7 @@ export default ({ t }: any) =>
       grouping: false,
       defaultSort: "desc",
       width: 115,
+      hidden: true,
       render: r => r && new Date(r.created_at).toLocaleString()
     },
     {
@@ -49,6 +50,7 @@ export default ({ t }: any) =>
       field: "updated_at",
       editable: "never",
       grouping: false,
+      hidden: true,
       render: r => (r ? new Date(r.updated_at).toLocaleString() : "")
     },
     { title: t("User"), field: "user_id ", width: 160 }

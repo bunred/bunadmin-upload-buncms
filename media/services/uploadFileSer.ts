@@ -28,7 +28,7 @@ export default async function uploadFileSer(
 
   // `request` use `umi-request` directly
   return await request((options && options.url) || "/file", {
-    prefix: (options && options.prefix) || ENV.SITE_URLS[1],
+    prefix: (options && options.prefix) || ENV.AUTH_URL,
     method: (options && options.method) || "post",
     headers: (options && options.headers) || {
       Authorization: `Bearer ${token}`

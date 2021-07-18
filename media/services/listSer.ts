@@ -11,8 +11,9 @@ export default async function listSer(query: Query<any>) {
 
   const gql = `
     query MyQuery {
-      ${SchemaName}(limit: ${pageSize}, offset: ${pageSize *
-    page}, order_by: {created_at: desc}) {
+      ${SchemaName}(limit: ${pageSize}, offset: ${
+    pageSize * page
+  }, order_by: {created_at: desc}) {
         id
         created_at
         updated_at
@@ -33,9 +34,11 @@ export default async function listSer(query: Query<any>) {
   `
 
   return request("/graphql", {
-    prefix: ENV.SITE_URLS[0],
+    prefix: ENV.MAIN_URL,
     method: "POST",
-    headers: { token },
+    headers: {
+      Authorization: "Bearer " + token
+    },
     data: JSON.stringify({ query: gql })
   })
 }

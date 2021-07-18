@@ -15,9 +15,11 @@ export default async function addSer(newData: Type) {
   `
 
   return request("/graphql", {
-    prefix: ENV.SITE_URLS[0],
+    prefix: ENV.MAIN_URL,
     method: "POST",
-    headers: { token },
+    headers: {
+      Authorization: "Bearer " + token
+    },
     data: JSON.stringify({ query: gql })
   })
 }
