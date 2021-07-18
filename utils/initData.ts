@@ -1,6 +1,5 @@
 import { IPluginData } from "@bunred/bunadmin"
 
-const plugin = "buncms-upload"
 const commonProps = {
   team: "buncms",
   group: "upload-buncms",
@@ -16,4 +15,4 @@ const data: IPluginData[] = [
     icon_type: "eva"
   }
 ]
-export default { plugin, data }
+export default data
