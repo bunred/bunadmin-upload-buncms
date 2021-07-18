@@ -4,8 +4,7 @@ const plugin = "buncms-upload"
 const commonProps = {
   team: "buncms",
   group: "upload-buncms",
-  customized: true,
-  icon_type: "eva"
+  customized: true
 }
 const data: IPluginData[] = [
   {
@@ -13,7 +12,8 @@ const data: IPluginData[] = [
     id: "buncms_upload_media",
     name: "media",
     label: "Files",
-    icon: "cloud-upload-outline"
+    icon: "cloud-upload-outline",
+    icon_type: "eva"
   }
 ]
 export default { plugin, data }

@@ -7,3 +7,5 @@ export {
 
 import TypeMedia from "./media/types"
 export type MediaType = TypeMedia
+
+export { default as initData } from "./utils/initData"

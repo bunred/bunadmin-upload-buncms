@@ -16,7 +16,7 @@ export default ({ t }: any) =>
         <BunadminFile
           width={100}
           viewMode={true}
-          prefix={ENV.SITE_URLS[2]}
+          prefix={ENV.FILE_PREVIEW_URL}
           file={rowData}
         />
       )

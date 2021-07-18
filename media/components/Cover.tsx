@@ -27,7 +27,7 @@ export default function Cover({
       <BunadminFile
         width={width}
         viewMode={viewMode}
-        prefix={ENV.SITE_URLS[2]}
+        prefix={ENV.FILE_PREVIEW_URL}
         onDrop={({ files, prefix, setImageUrl }) =>
           uploadMediaCtrl({
             editProps: editProps,
