@@ -1,5 +1,5 @@
 import React from "react"
-import { CommonDrawer } from "@bunred/bunadmin"
+import { Drawer } from "@bunred/bunadmin"
 import { useStyles } from "./styles"
 import { TFunction } from "i18next"
 
@@ -55,7 +55,7 @@ export default function UploadFiles(props: Props) {
 
   return (
     <div>
-      <CommonDrawer
+      <Drawer
         width="100%"
         height={225}
         direction="bottom"
@@ -73,7 +73,7 @@ export default function UploadFiles(props: Props) {
 
         {/* Upload new file */}
         {!viewMode && files.length + 1 <= maximum && <UploadArea />}
-      </CommonDrawer>
+      </Drawer>
     </div>
   )
 }

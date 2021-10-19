@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react"
 import { notice } from "@bunred/bunadmin"
 import { OnDropProps } from "../components/BunadminFile"
 import uploadFileSer from "../services/uploadFileSer"
-import { EditComponentProps, rxMtUpdateField } from "material-table"
+import { EditComponentProps } from "material-table"
 
 interface Props extends OnDropProps {
   editProps?: EditComponentProps<any>
@@ -29,10 +29,15 @@ export default async function uploadMediaCtrl({
     setImageUrl && setImageUrl(`${prefix}/${res.file_name}`)
     // await notice({ title: "Uploaded successfully" })
 
-    // Insert to media
+    // Insert to MUI Table Field
     if (!editProps) return
-    editProps.rowData.cover_id = res.id || "" // media id
-    await rxMtUpdateField({ name: "cover_id", value: res.id || "" })
+    const field = editProps.columnDef.field
+
+    editProps.onChange(res.id || "")
+    editProps.onRowDataChange({
+      ...editProps.rowData,
+      [field]: res.id || ""
+    })
   } else {
     await notice({
       title: "Uploaded failed",
